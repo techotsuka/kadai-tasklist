@@ -1,0 +1,7 @@
+<% tasks.each do |task| %>
+
+    <%= link_to task.user.name, user-path(task.user) %> posted at <%= task.created_at %>
+    
+    <p><%= task.content %></p>
+    
+<% end %>

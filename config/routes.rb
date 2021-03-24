@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/new'
   get 'users/create'
+
+
     root to: 'tasks#index'
     resources :tasks
 
@@ -17,4 +19,6 @@ Rails.application.routes.draw do
 #サインアップ    
   get 'signup', to: 'users#new'
     resources :users, only: [:index, :show, :create]
+    
+    
  end

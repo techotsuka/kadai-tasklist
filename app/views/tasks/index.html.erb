@@ -1,6 +1,16 @@
 <% if logged_in? %>
     <p>ログイン完了ユーザ: <%= current_user.name %></p>
-<% eles %>
+    <h1>タスク一覧</h1>
+<ul>
+
+    <% @tasks.each do |task| %>
+        <li><%= link_to task.id,task %> : <%= task.status %> &gt; <%= task.content %></li>
+    <% end %>
+</ul>
+<%= link_to '新規タスクの登録',new_task_path %>
+
+
+<% else %>
 <div class="center juumbotron">
     <div class="text-center">
         <h1>タスクリストにようこそ！</h1>
@@ -9,13 +19,3 @@
 </div>
 <% end %>
 
-<h1>タスク一覧</h1>
-
-
-<ul>
-    <% @tasks.each do |task| %>
-        <li><%= link_to task.id,task %> : <%= task.status %> &gt; <%= task.content %></li>
-    <% end %>
-</ul>
-
-<%= link_to '新規タスクの登録',new_task_path %>

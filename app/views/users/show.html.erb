@@ -2,13 +2,14 @@
     <aside class="col-sm-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><%= @user.name %></h3>
+                <h3 class="card-title">名前: <%= @user.name %></h3>
             </div>
         </div>
     </aside>
     <div class ="col-sm-8">
         <ul>
-            <li class="nav-item"><a href="#" class="nav-link">Tasks</a></li>
+           <!-- <ll></li> -->
+           <li><%= link_to 'タスク一覧に戻る', tasks_path(current_user) %></li>
         </ul>
     </div>
 </div>
