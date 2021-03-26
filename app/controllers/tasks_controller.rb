@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in 
-    before_action :login_user_Confirmation
+#    before_action :login_user_Confirmation
 
     def index
         @tasks = current_user.tasks.all
@@ -59,10 +59,10 @@ class TasksController < ApplicationController
     end           
     
     # ID
-    def login_user_Confirmation
-        if  current_user.id = params[:ID]
-        else
-        redirect_back(fallback_location: root_path)
-        end
-    end
+    #def login_user_Confirmation
+    #    if  current_user.id = params[:ID]
+    #    else
+    #    redirect_back(fallback_location: root_path)
+    #    end
+    #end
 end
