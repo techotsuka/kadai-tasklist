@@ -60,7 +60,7 @@ class TasksController < ApplicationController
     
     # ID
     def login_user_Confirmation
-        if  current_user.ID = params[:ID]
+        if  current_user.id = params[:ID]
         else
         redirect_back(fallback_location: root_path)
         end
