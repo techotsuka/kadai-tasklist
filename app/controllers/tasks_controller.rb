@@ -60,8 +60,8 @@ class TasksController < ApplicationController
     
     # 
     def correct_user
-        p = Task.find_by_id(params[:id]) == current_user.id
-        unless p
+        @p = current_user.tasks.find_by(id: params)
+        unless @p
          redirect_to root_url
         end
     end
