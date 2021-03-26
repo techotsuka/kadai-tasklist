@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in 
-    before_action :login_user_confirmation
+    before_action :correct_user
+
 
     def index
         @tasks = current_user.tasks.all
@@ -58,12 +59,11 @@ class TasksController < ApplicationController
         params.require(:task).permit(:content,:status)
     end           
     
-    # ID
-    def login_user_confirmation
-        if  current_user.id = params[:ID]
-        else
-        redirect_back(fallback_location: root_path)
+    # 
+    def correct_user
+        params[:id] == current_user.id
+        unless
+         redirect_to root_url
         end
-    
     end
 end
