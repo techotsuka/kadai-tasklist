@@ -60,7 +60,7 @@ class TasksController < ApplicationController
     
     # 
     def correct_user
-        @p = current_user.tasks.find_by(id: params)
+        @p = current_user.tasks.find_by(id: params[:id])
         unless @p
          redirect_to root_url
         end
