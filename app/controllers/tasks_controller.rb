@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in 
+    before_action :correct_user
 
     def index
         @tasks = current_user.tasks.all
     end
 
     def show
-        correct_user
         @task = Task.find(params[:id])
     end
     
@@ -27,12 +27,10 @@ class TasksController < ApplicationController
     end
     
     def edit
-        correct_user
         @task = Task.find(params[:id])
     end
     
     def update
-        correct_user
         @task = Task.find(params[:id])
         if @task.update(task_params)
             flash[:success] = 'Taskは正常に更新されました'
@@ -44,7 +42,6 @@ class TasksController < ApplicationController
     end
     
     def destroy
-        correct_user
         @task = Task.find(params[:id])
         @task.destroy
         flash[:success] = 'Taskは正常に削除されました'
@@ -58,10 +55,10 @@ class TasksController < ApplicationController
         params.require(:task).permit(:content,:status)
     end           
     
-    # 
+    # 他ファイルで使用する場合はインスタンス変数に修正すること
     def correct_user
-        @p = current_user.tasks.find_by(id: params[:id])
-        unless @p
+        verify = current_user.tasks.find_by(id: params[:id])
+        unless verify
          redirect_to root_url
         end
     end
